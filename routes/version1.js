@@ -36,6 +36,7 @@ router.get("/delete/:post_id?", async (req, res, next) => {
 // add a post
 router.post("/add_post", async (req, res) => {
   const { title, author_id, content } = req.body;
+  console.log("req.body", req.body)
   const response = await PostModel.addEntry(title, author_id, content);
   if (response.command === "INSERT" && response.rowCount >= 0) {
     res.sendStatus(200);
@@ -45,10 +46,11 @@ router.post("/add_post", async (req, res) => {
 });
 
 // update a post
-router.put("update/:post_id?", async (req, res) => {
+router.put("/update/:post_id?", async (req, res, next) => {
+  const content = req.body.content;
   const postId = req.params.post_id;
-  const { title, author_id, content } = req.body;
   const response = await PostModel.updateEntry(postId, "content", content);
+  console.log("update response: ", response)
   if (response.command === "UPDATE" && response.rowCount >= 1) {
     res.sendStatus(200);
   } else {
