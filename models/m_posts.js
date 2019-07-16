@@ -25,6 +25,7 @@ class Posts {
       return err.message;
     }
   }
+
   static async removeEntry(p_id) {
     try {
       const response = await db.result(`delete from posts where id = ${p_id}`);

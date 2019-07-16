@@ -14,9 +14,9 @@ const corsOptions = {
     "Origin, X-Requested-With, Content-Type, Accept"
 };
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var version1Router = require("./routes/version1");
+var indexRouter = require("./routes/r_index");
+var version1Router = require("./routes/r_version1");
+var authorRouter = require("./routes/r_authors");
 
 var app = express();
 
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors(corsOptions));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/v1", version1Router);
+app.use("/a1", authorRouter);
 
 module.exports = app;

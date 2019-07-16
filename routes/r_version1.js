@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-var PostModel = require("../models/posts");
+var PostModel = require("../models/m_posts");
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
@@ -57,5 +57,6 @@ router.put("/update/:post_id?", async (req, res, next) => {
     res.send(`Could not update Post ID ${postId}`).status(409);
   }
 });
+
 
 module.exports = router;
